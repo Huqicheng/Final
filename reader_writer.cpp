@@ -9,6 +9,7 @@
 #include "graph.hpp"
 
 using namespace std;
+using namespace stringutils;
 
 pthread_mutex_t mut_output = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mut_input = PTHREAD_MUTEX_INITIALIZER;
