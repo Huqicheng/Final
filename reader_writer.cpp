@@ -104,7 +104,9 @@ void* a2(void* args){
     Graph tmpG = g;
     set<vector<int>> edges;
     set<int> setVertices;
+    cout << "landmark0"<< endl;
     tmpG.getEdges(edges);
+    cout << "landmark1"<< endl;
     while(!edges.empty()){
         
         int idx = 0;
