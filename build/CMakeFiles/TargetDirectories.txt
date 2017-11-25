@@ -1,0 +1,17 @@
+/Users/huqicheng/Desktop/650finalproject/build/CMakeFiles/install/local.dir
+/Users/huqicheng/Desktop/650finalproject/build/CMakeFiles/rebuild_cache.dir
+/Users/huqicheng/Desktop/650finalproject/build/CMakeFiles/edit_cache.dir
+/Users/huqicheng/Desktop/650finalproject/build/CMakeFiles/install/strip.dir
+/Users/huqicheng/Desktop/650finalproject/build/CMakeFiles/install.dir
+/Users/huqicheng/Desktop/650finalproject/build/CMakeFiles/list_install_components.dir
+/Users/huqicheng/Desktop/650finalproject/build/CMakeFiles/main.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/install/local.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/install/strip.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/install.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/list_install_components.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/rebuild_cache.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/edit_cache.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/minisat_simp.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/minisat_core.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/minisat-lib-shared.dir
+/Users/huqicheng/Desktop/650finalproject/build/minisat/CMakeFiles/minisat-lib-static.dir
