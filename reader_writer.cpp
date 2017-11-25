@@ -106,7 +106,7 @@ void* a2(void* args){
     set<int> setVertices;
     tmpG.getEdges(edges);
     while(!edges.empty()){
-        
+        cout << "landmark" << endl;
         int idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
         
         set<vector<int>>::iterator ite;
@@ -232,7 +232,7 @@ void* io(void* args){
             }
         }
         
-        cout << "landmark" << endl;
+        
         edgeCache = vect;
         
     }else{
