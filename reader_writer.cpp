@@ -205,7 +205,7 @@ void* io(void* args){
     
     // start your output here
     g.printGraph();
-    printGraph("a1",resultVC4a1);
+    printResult("a1",resultVC4a1);
     
     
     mulock(LOCK,&mut_cnt);
