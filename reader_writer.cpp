@@ -293,6 +293,10 @@ void* a1(void* args){
     
     mulock(LOCK,&mut_input);
     
+    if(edgeCache.size() == 0){
+        
+    }else{
+        
     //algorithm
     vector<vector<int>> edges;
     edges = edgeCache;
@@ -323,7 +327,8 @@ void* a1(void* args){
     for(iteSet = setVertices.begin();iteSet!=setVertices.end();iteSet++){
         resultVC4a1.push_back(*iteSet);
     }
-    
+        
+    }
     
     mulock(LOCK,&mut_cnt);
     cnt++;
@@ -340,6 +345,9 @@ void* a2(void* args){
     
     mulock(LOCK,&mut_input);
     
+    if(edgeCache.size() == 0){
+        
+    }else{
     Graph tmpG = g;
     set<vector<int>> edges;
     set<int> setVertices;
@@ -372,7 +380,8 @@ void* a2(void* args){
     for(iteInt = setVertices.begin();iteInt!=setVertices.end();iteInt++){
         resultVC4a2.push_back(*iteInt);
     }
-    
+        
+    }
     
     mulock(LOCK,&mut_cnt);
     cnt++;
@@ -389,20 +398,25 @@ void* a3(void* args){
     
     mulock(LOCK,&mut_input);
     
-    for(int k=1; k<g.getVertexNum()-1;k++){
-        vector<vector<int> > res;
-        Minisat::lbool tag = solve(g,k,res);
-        if(tag == Minisat::l_True){
-            for(unsigned int ii = 0;ii<res.size();++ii){
-                for(unsigned int jj=0;jj<res[ii].size();++jj){
-                    if(res[ii][jj] == 0){
-                        resultVC4a3.push_back(ii);
+    if(edgeCache.size() == 0){
+        
+    }else{
+        for(int k=1; k<g.getVertexNum()-1;k++){
+            vector<vector<int> > res;
+            Minisat::lbool tag = solve(g,k,res);
+            if(tag == Minisat::l_True){
+                for(unsigned int ii = 0;ii<res.size();++ii){
+                    for(unsigned int jj=0;jj<res[ii].size();++jj){
+                        if(res[ii][jj] == 0){
+                            resultVC4a3.push_back(ii);
+                        }
                     }
                 }
+                break;
             }
-            break;
         }
     }
+    
     
     
     mulock(LOCK,&mut_cnt);
