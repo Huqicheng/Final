@@ -25,6 +25,10 @@ vector<int> resultVC4a1;
 vector<int> resultVC4a2;
 vector<int> resultVC4a3;
 
+vector<vector<int>> edgeCache;
+
+
+
 void printResult(string name,vector<int>& result){
     cout << name << ":";
     for(unsigned int i=0;i<result.size();i++){
@@ -44,7 +48,8 @@ void* a1(void* args){
     
     //algorithm
     vector<vector<int>> edges;
-    g.getEdges(edges);
+    edges = edgeCache;
+    
     
     set<int> setVertices;
     
@@ -191,6 +196,7 @@ void* io(void* args){
                 return NULL;
             }
         }
+        edgeCache = vect;
         
     }else{
         input_flag = 0;
