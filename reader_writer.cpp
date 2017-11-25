@@ -107,11 +107,13 @@ void* a2(void* args){
     tmpG.getEdges(edges);
     while(!edges.empty()){
         
-        int idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
-        
+        int idx = 0;
+        cout << "idx:" << idx << endl;
+        idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
+        cout << "idx:" << idx << endl;
         set<vector<int>>::iterator ite;
         setVertices.insert(idx);
-        //cout << "idx:" << idx << endl;
+        cout << "idx:" << idx << endl;
         for(ite=edges.begin();ite!=edges.end();){
             vector<int> edge = *ite;
             if(edge[0] == idx || edge[1] == idx){
