@@ -101,34 +101,34 @@ void* a2(void* args){
     
     mulock(LOCK,&mut_input);
     
-    Graph tmpG = g;
-    set<vector<int>> edges;
-    set<int> setVertices;
-    tmpG.getEdges(edges);
-    while(!edges.empty()){
-        
-        int idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
-        
-        set<vector<int>>::iterator ite;
-        setVertices.insert(idx);
-        //cout << "idx:" << idx << endl;
-        for(ite=edges.begin();ite!=edges.end();){
-            vector<int> edge = *ite;
-            if(edge[0] == idx || edge[1] == idx){
-                tmpG.removeEdge(edge[0],edge[1]);
-                ite = edges.erase(ite);
-            }else{
-                ite++;
-            }
-            
-        }
-  
-        
-    }
-    set<int>::iterator iteInt;
-    for(iteInt = setVertices.begin();iteInt!=setVertices.end();iteInt++){
-        resultVC4a2.push_back(*iteInt);
-    }
+//    Graph tmpG = g;
+//    set<vector<int>> edges;
+//    set<int> setVertices;
+//    tmpG.getEdges(edges);
+//    while(!edges.empty()){
+//        
+//        int idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
+//        
+//        set<vector<int>>::iterator ite;
+//        setVertices.insert(idx);
+//        //cout << "idx:" << idx << endl;
+//        for(ite=edges.begin();ite!=edges.end();){
+//            vector<int> edge = *ite;
+//            if(edge[0] == idx || edge[1] == idx){
+//                tmpG.removeEdge(edge[0],edge[1]);
+//                ite = edges.erase(ite);
+//            }else{
+//                ite++;
+//            }
+//            
+//        }
+//  
+//        
+//    }
+//    set<int>::iterator iteInt;
+//    for(iteInt = setVertices.begin();iteInt!=setVertices.end();iteInt++){
+//        resultVC4a2.push_back(*iteInt);
+//    }
     
     
     mulock(LOCK,&mut_cnt);
