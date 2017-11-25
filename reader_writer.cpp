@@ -21,7 +21,19 @@ int input_flag = 1;
 
 /* global data structure*/
 Graph g;
+vector<int> resultVC4a1;
+vector<int> resultVC4a2;
+vector<int> resultVC4a3;
 
+void printResult(string name,vector<int>& result){
+    cout << name << ":";
+    for(unsigned int i=0;i<result.size();i++){
+        if(i != result.size()-1)
+            cout<<result[i]<<",";
+        else
+            cout<<result[i]<<endl;
+    }
+}
 
 /* to simulate 3 algorithms :(*/
 
@@ -31,6 +43,34 @@ void* a1(void* args){
     mulock(LOCK,&mut_input);
     
     //algorithm
+    vector<vector<int>> edges;
+    g.getEdges(edges);
+    
+    set<int> setVertices;
+    
+    vector<vector<int>>::iterator edgeIterator = edges.begin();
+    
+    while(edgeIterator!=edges.end()){
+        vector<int> edge = *edgeIterator;
+        setVertices.insert(edge[0]);
+        setVertices.insert(edge[1]);
+        vector<vector<int>>::iterator ite = edgeIterator+1;
+        for(;ite!=edges.end();ite++){
+            vector<int> vect = *ite;
+            if(vect[0] == edge[0] || vect[0] == edge[1] || vect[1] == edge[0] || vect[1] == edge[1]){
+                edges.erase(ite);
+                ite--;
+            }
+        }
+        
+        
+        edges.erase(edgeIterator);
+    }
+    
+    set<int>::iterator iteSet;
+    for(iteSet = setVertices.begin();iteSet!=setVertices.end();iteSet++){
+        resultVC4a1.push_back(*iteSet);
+    }
     
     
     mulock(LOCK,&mut_cnt);
@@ -165,6 +205,7 @@ void* io(void* args){
     
     // start your output here
     g.printGraph();
+    printGraph("a1",resultVC4a1);
     
     
     mulock(LOCK,&mut_cnt);
