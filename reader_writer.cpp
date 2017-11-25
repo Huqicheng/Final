@@ -27,6 +27,14 @@ vector<int> resultVC4a3;
 
 vector<vector<int>> edgeCache;
 
+void reset(){
+    g.reset();
+    resultVC4a1.clear();
+    resultVC4a2.clear();
+    resultVC4a3.clear();
+    edgeCache.clear();
+}
+
 
 
 void printResult(string name,vector<int>& result){
@@ -219,6 +227,7 @@ void* io(void* args){
     cnt = 0;
     mulock(UNLOCK,&mut_cnt);
     
+    reset();
     
     
     mulock(UNLOCK,&mut_output);
