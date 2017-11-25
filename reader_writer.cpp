@@ -157,16 +157,15 @@ void* io(void* args){
     }
 
 
-    g.printGraph();
+    
     
     mulock(UNLOCK,&mut_input);
     mulock(LOCK,&mut_output);
     
     // start your output here
-    cout << "a1:" << s.i1 << endl;
-    cout << "a2:" << s.i2 << endl;
-    cout << "a3:" << s.i3 << endl;
-
+    g.printGraph();
+    
+    
     mulock(LOCK,&mut_cnt);
     cout << "set counter 0" << endl;
     cnt = 0;
