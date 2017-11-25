@@ -104,18 +104,18 @@ void* a2(void* args){
     Graph tmpG = g;
     set<vector<int>> edges;
     set<int> setVertices;
-    cout << "landmark0"<< endl;
+    
     tmpG.getEdges(edges);
-    cout << "landmark1"<< endl;
+    
     while(!edges.empty()){
         
         int idx = 0;
-        cout << "idx:" << idx << endl;
+        
         idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
-        cout << "idx:" << idx << endl;
+        
         set<vector<int>>::iterator ite;
         setVertices.insert(idx);
-        cout << "idx:" << idx << endl;
+        
         for(ite=edges.begin();ite!=edges.end();){
             vector<int> edge = *ite;
             if(edge[0] == idx || edge[1] == idx){

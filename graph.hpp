@@ -44,7 +44,7 @@ public:
     }
     
     Graph(Graph& g){
-        cout << g.vertexNum << endl;
+        //cout << g.vertexNum << endl;
         this->vertexNum = g.vertexNum;
         for(int i=0;i<vertexNum;i++)
             for(int j=0;j<vertexNum;j++){
