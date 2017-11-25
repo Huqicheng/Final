@@ -231,6 +231,8 @@ void* io(void* args){
                 return NULL;
             }
         }
+        
+        cout << "landmark" << endl;
         edgeCache = vect;
         
     }else{
