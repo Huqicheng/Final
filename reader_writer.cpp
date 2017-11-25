@@ -111,7 +111,7 @@ void* a2(void* args){
         
         set<vector<int>>::iterator ite;
         setVertices.insert(idx);
-        cout << "idx:" << idx << endl;
+        //cout << "idx:" << idx << endl;
         for(ite=edges.begin();ite!=edges.end();){
             vector<int> edge = *ite;
             if(edge[0] == idx || edge[1] == idx){
@@ -170,7 +170,7 @@ void* io(void* args){
             input_flag = 0;
             return NULL;
         }
-        cout << "input:" << str << endl;
+        //cout << "input:" << str << endl;
         int opType = -1;
         int num = 0;
         string errMsg = "";
@@ -204,7 +204,7 @@ void* io(void* args){
             input_flag = 0;
             return NULL;
         }
-        cout << "input:" << str << endl;
+        //cout << "input:" << str << endl;
         int opType = -1;
         int num = 0;
         string errMsg = "";
@@ -245,13 +245,13 @@ void* io(void* args){
     mulock(LOCK,&mut_output);
     
     // start your output here
-    g.printGraph();
+    //g.printGraph();
     printResult("a1",resultVC4a1);
     printResult("a2",resultVC4a2);
     
     
     mulock(LOCK,&mut_cnt);
-    cout << "set counter 0" << endl;
+    //cout << "set counter 0" << endl;
     cnt = 0;
     mulock(UNLOCK,&mut_cnt);
     
