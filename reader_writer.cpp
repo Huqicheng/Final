@@ -55,35 +55,35 @@ void* a1(void* args){
     mulock(LOCK,&mut_input);
     
     //algorithm
-    vector<vector<int>> edges;
-    edges = edgeCache;
-    
-    
-    set<int> setVertices;
-    
-    vector<vector<int>>::iterator edgeIterator = edges.begin();
-    
-    while(edgeIterator!=edges.end()){
-        vector<int> edge = *edgeIterator;
-        setVertices.insert(edge[0]);
-        setVertices.insert(edge[1]);
-        vector<vector<int>>::iterator ite = edgeIterator+1;
-        for(;ite!=edges.end();ite++){
-            vector<int> vect = *ite;
-            if(vect[0] == edge[0] || vect[0] == edge[1] || vect[1] == edge[0] || vect[1] == edge[1]){
-                edges.erase(ite);
-                ite--;
-            }
-        }
-        
-        
-        edges.erase(edgeIterator);
-    }
-    
-    set<int>::iterator iteSet;
-    for(iteSet = setVertices.begin();iteSet!=setVertices.end();iteSet++){
-        resultVC4a1.push_back(*iteSet);
-    }
+//    vector<vector<int>> edges;
+//    edges = edgeCache;
+//    
+//    
+//    set<int> setVertices;
+//    
+//    vector<vector<int>>::iterator edgeIterator = edges.begin();
+//    
+//    while(edgeIterator!=edges.end()){
+//        vector<int> edge = *edgeIterator;
+//        setVertices.insert(edge[0]);
+//        setVertices.insert(edge[1]);
+//        vector<vector<int>>::iterator ite = edgeIterator+1;
+//        for(;ite!=edges.end();ite++){
+//            vector<int> vect = *ite;
+//            if(vect[0] == edge[0] || vect[0] == edge[1] || vect[1] == edge[0] || vect[1] == edge[1]){
+//                edges.erase(ite);
+//                ite--;
+//            }
+//        }
+//        
+//        
+//        edges.erase(edgeIterator);
+//    }
+//    
+//    set<int>::iterator iteSet;
+//    for(iteSet = setVertices.begin();iteSet!=setVertices.end();iteSet++){
+//        resultVC4a1.push_back(*iteSet);
+//    }
     
     
     mulock(LOCK,&mut_cnt);
@@ -106,7 +106,7 @@ void* a2(void* args){
     set<int> setVertices;
     tmpG.getEdges(edges);
     while(!edges.empty()){
-        cout << "landmark" << endl;
+        
         int idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
         
         set<vector<int>>::iterator ite;
