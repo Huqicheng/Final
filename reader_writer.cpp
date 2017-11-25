@@ -5,8 +5,8 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <vector>
-#include <command.hpp>
-#include <graph.hpp>
+#include "command.hpp"
+#include "graph.hpp"
 
 using namespace std;
 
