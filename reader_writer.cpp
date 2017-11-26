@@ -2,8 +2,9 @@
 #include "minisat/core/Solver.h"
 #include "minisat/mtl/Vec.h"
 #include "helper.h"
-#include "pthread.h"
-#include <cstdio>
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
@@ -14,7 +15,6 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/time.h>
-#include <unistd.h>
 #include "command.hpp"
 #include "graph.hpp"
 
