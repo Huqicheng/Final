@@ -2,6 +2,7 @@
 #include "minisat/core/Solver.h"
 #include "minisat/mtl/Vec.h"
 #include "helper.h"
+#include "pthread.h"
 #include <cstdio>
 #include <iostream>
 #include <sstream>
@@ -511,6 +512,10 @@ int main(){
         
         // if io terminated, check if it's eof
         if(!input_flag){
+            //kill threads
+            pthread_kill(thread_a1, 0);
+            pthread_kill(thread_a2, 0);
+            pthread_kill(thread_a3, 0);
             //jump out of while loop
             break;
         }
