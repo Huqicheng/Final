@@ -283,6 +283,16 @@ void* a1(void* args){
         
     }
     
+    clockid_t cid;
+    int retcode;
+    retcode = pthread_getcpuclockid(pthread_self(), &cid);
+    
+    if(retcode) {
+        errp("a1 - pthread_getcpuclockid", retcode);
+    }
+    else {
+        pclock("a1 - Thread cpu time: ", cid);
+    }
     
     
     mulock(LOCK,&mut_cnt);
@@ -326,6 +336,16 @@ void* a2(void* args){
 
     }
     
+    clockid_t cid;
+    int retcode;
+    retcode = pthread_getcpuclockid(pthread_self(), &cid);
+    
+    if(retcode) {
+        errp("a2 - pthread_getcpuclockid", retcode);
+    }
+    else {
+        pclock("a2 - Thread cpu time: ", cid);
+    }
     
 
     
@@ -361,6 +381,17 @@ void* a3(void* args){
                 break;
             }
         }
+    }
+    
+    clockid_t cid;
+    int retcode;
+    retcode = pthread_getcpuclockid(pthread_self(), &cid);
+    
+    if(retcode) {
+        errp("a3 - pthread_getcpuclockid", retcode);
+    }
+    else {
+        pclock("a3 - Thread cpu time: ", cid);
     }
     
     mulock(LOCK,&mut_cnt);
