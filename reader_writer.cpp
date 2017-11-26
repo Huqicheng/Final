@@ -517,7 +517,7 @@ void* io(void* args){
     mulock(LOCK,&mut_output);
     
     // start your output here
-    //g.printGraph();
+    g.printGraph();
     printResult("CNF-SAT-VC",resultVC4a3);
     printResult("APPROX-VC-1",resultVC4a2);
     printResult("APPROX-VC-2",resultVC4a1);
