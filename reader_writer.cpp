@@ -411,10 +411,10 @@ void* io(void* args){
         string str;
         
         std::getline(std::cin, str);
-        if(str == "") {
-            input_flag = 0;
-            return NULL;
-        }
+//        if(str == "") {
+//            input_flag = 0;
+//            return NULL;
+//        }
         //cout << "input:" << str << endl;
         int opType = -1;
         int num = 0;
@@ -445,10 +445,10 @@ void* io(void* args){
         string str;
         
         std::getline(std::cin, str);
-        if(str == "") {
-            input_flag = 0;
-            return NULL;
-        }
+//        if(str == "") {
+//            input_flag = 0;
+//            return NULL;
+//        }
         //cout << "input:" << str << endl;
         int opType = -1;
         int num = 0;
