@@ -118,9 +118,9 @@ vector<vector<int>> edgeCache;
 
 void reset(){
     g.reset();
-    resultVC4a1.clear();
-    resultVC4a2.clear();
-    resultVC4a3.clear();
+    resultVC4Approx1.clear();
+    resultVC4Approx2.clear();
+    resultVC4CNF.clear();
     edgeCache.clear();
 }
 
