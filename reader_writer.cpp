@@ -238,149 +238,83 @@ Minisat::lbool solve(Graph& g , int k, vector<vector<int> >& res){
 }
 
 
-
-
-void* solveBySat(Graph& g){
-    int left=1, right=g.getVertexNum()-1;
-    int resK = -1;
-    vector<int> resV;
-    while(left<=right){
-        int k = (right-left)/2+left;
-        
-        vector<vector<int> > res;
-        Minisat::lbool tag = solve(g,k,res);
-        
-        // if tag == true, then current k is guaranteed to be the minimum
-        if(tag == Minisat::l_True){
-            vector<int> vertices;
-            // vector vertices is guaranteed to be in ascending order
-            for(unsigned int ii = 0;ii<res.size();++ii){
-                for(unsigned int jj=0;jj<res[ii].size();++jj){
-                    if(res[ii][jj] == 0){
-                        vertices.push_back(ii);
-                    }
-                }
-            }
-            
-            resK = k;
-            resV = vertices;
-            
-            right = k-1;
-            
-        }else{
-            left = k+1;
-            
-        }
-        
-    }
-    for(unsigned int ii=0;ii<resV.size();++ii){
-        if(ii == resV.size()-1){
-            cout<<resV[ii]<<endl;
-        }else{
-            cout<<resV[ii]<<" ";
-        }
-        
-    }
-    
-}
-
-
-
 /* to simulate 3 algorithms :(*/
 
 //approx 2
 void* a1(void* args){
     
     mulock(LOCK,&mut_input);
-    
     if(edgeCache.size() == 0){
-        
+        // do nothing
     }else{
         
-    //algorithm
-    vector<vector<int>> edges;
-    edges = edgeCache;
+        //algorithm
+        vector<vector<int>> edges;
+        edges = edgeCache;
+        set<int> setVertices;
     
+        vector<vector<int>>::iterator edgeIterator = edges.begin();
     
-    set<int> setVertices;
-    
-    vector<vector<int>>::iterator edgeIterator = edges.begin();
-    
-    while(edgeIterator!=edges.end()){
-        vector<int> edge = *edgeIterator;
-        setVertices.insert(edge[0]);
-        setVertices.insert(edge[1]);
-        vector<vector<int>>::iterator ite = edgeIterator+1;
-        for(;ite!=edges.end();ite++){
-            vector<int> vect = *ite;
-            if(vect[0] == edge[0] || vect[0] == edge[1] || vect[1] == edge[0] || vect[1] == edge[1]){
-                edges.erase(ite);
-                ite--;
+        while(edgeIterator!=edges.end()){
+            vector<int> edge = *edgeIterator;
+            setVertices.insert(edge[0]);
+            setVertices.insert(edge[1]);
+            vector<vector<int>>::iterator ite = edgeIterator+1;
+            for(;ite!=edges.end();ite++){
+                vector<int> vect = *ite;
+                if(vect[0] == edge[0] || vect[0] == edge[1] || vect[1] == edge[0] || vect[1] == edge[1]){
+                    edges.erase(ite);
+                    ite--;
+                }
             }
+            edges.erase(edgeIterator);
+        }
+    
+        set<int>::iterator iteSet;
+        for(iteSet = setVertices.begin();iteSet!=setVertices.end();iteSet++){
+            resultVC4a1.push_back(*iteSet);
         }
         
-        
-        edges.erase(edgeIterator);
     }
-    
-    set<int>::iterator iteSet;
-    for(iteSet = setVertices.begin();iteSet!=setVertices.end();iteSet++){
-        resultVC4a1.push_back(*iteSet);
-    }
-        
-    }
-    
     mulock(LOCK,&mut_cnt);
     cnt++;
     if(cnt == 3){
         mulock(UNLOCK,&mut_output);
     }
     mulock(UNLOCK,&mut_cnt);
-    
     mulock(UNLOCK,&mut_input);
 }
 
 //approx 1
 void* a2(void* args){
-    
     mulock(LOCK,&mut_input);
-    
     if(edgeCache.size() == 0){
-        
+        // do nothing
     }else{
-    Graph tmpG = g;
-    set<vector<int>> edges;
-    set<int> setVertices;
-    
-    tmpG.getEdges(edges);
-    
-    while(!edges.empty()){
-        
-        int idx = 0;
-        
-        idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
-        
-        set<vector<int>>::iterator ite;
-        setVertices.insert(idx);
-        
-        for(ite=edges.begin();ite!=edges.end();){
-            vector<int> edge = *ite;
-            if(edge[0] == idx || edge[1] == idx){
-                tmpG.removeEdge(edge[0],edge[1]);
-                ite = edges.erase(ite);
-            }else{
-                ite++;
+        Graph tmpG = g;
+        set<vector<int>> edges;
+        set<int> setVertices;
+        tmpG.getEdges(edges);
+        while(!edges.empty()){
+            int idx = 0;
+            idx = tmpG.getIdxOfVertexWithMaxDegree(setVertices);
+            set<vector<int>>::iterator ite;
+            setVertices.insert(idx);
+            for(ite=edges.begin();ite!=edges.end();){
+                vector<int> edge = *ite;
+                if(edge[0] == idx || edge[1] == idx){
+                    tmpG.removeEdge(edge[0],edge[1]);
+                    ite = edges.erase(ite);
+                }else{
+                    ite++;
+                }
             }
-            
         }
-  
-        
-    }
-    set<int>::iterator iteInt;
-    for(iteInt = setVertices.begin();iteInt!=setVertices.end();iteInt++){
-        resultVC4a2.push_back(*iteInt);
-    }
-        
+        set<int>::iterator iteInt;
+        for(iteInt = setVertices.begin();iteInt!=setVertices.end();iteInt++){
+            resultVC4a2.push_back(*iteInt);
+        }
+
     }
     
     mulock(LOCK,&mut_cnt);
@@ -509,10 +443,6 @@ void* io(void* args){
         input_flag = 0;
         return NULL;
     }
-
-
-    
-    
     mulock(UNLOCK,&mut_input);
     mulock(LOCK,&mut_output);
     
@@ -544,53 +474,46 @@ int main(){
     
     while(true){
     
-    // ensure that mut_input and mut_output will not be locked until the io thread terminates
-
+        // ensure that mut_input and mut_output will not be locked until the io thread terminates
+        mulock(LOCK,&mut_input);
+        mulock(LOCK,&mut_output);
+    
+        pthread_t thread_a1,thread_a2,thread_a3,thread_io;
+        void* res_a1,*res_a2,*res_a3;
+    
+    
+        // 3 algorithms run concurrently
+        if (pthread_create(&thread_a1, NULL, &a1, (void *)NULL) == -1) {
+            puts("fail to create pthread thread_a1");
+            exit(1);
+        }
+    
+        if (pthread_create(&thread_a2, NULL, &a2, (void *)NULL) == -1) {
+            puts("fail to create pthread thread_a2");
+            exit(1);
+        }
+    
+        if (pthread_create(&thread_a3, NULL, &a3, (void *)NULL) == -1){
+            puts("fail to create pthread thread_a3");
+            exit(1);
+        }
         
-    mulock(LOCK,&mut_input);
-    mulock(LOCK,&mut_output);
+        if (pthread_create(&thread_io, NULL, &io, (void *)NULL) == -1){
+            puts("fail to create pthread thread_a3");
+            exit(1);
+        }
     
-    pthread_t thread_a1,thread_a2,thread_a3,thread_io;
-    void* res_a1,*res_a2,*res_a3;
-    
-    
-    // 3 algorithms run concurrently
-    if (pthread_create(&thread_a1, NULL, &a1, (void *)NULL) == -1) {
-        puts("fail to create pthread thread_a1");
-        exit(1);
-    }
-
-    
-    if (pthread_create(&thread_a2, NULL, &a2, (void *)NULL) == -1) {
-        puts("fail to create pthread thread_a2");
-        exit(1);
-    }
-
-    
-    if (pthread_create(&thread_a3, NULL, &a3, (void *)NULL) == -1){
-        puts("fail to create pthread thread_a3");
-        exit(1);
-    }
+        // wait for io to terminate
+        if (pthread_join(thread_io,&res_a3) == -1){
+            puts("fail to recollect thread_io");
+            exit(1);
+        }
         
-
-    
-    if (pthread_create(&thread_io, NULL, &io, (void *)NULL) == -1){
-        puts("fail to create pthread thread_a3");
-        exit(1);
-    }
-    
-    // wait for io to terminate
-    if (pthread_join(thread_io,&res_a3) == -1){
-        puts("fail to recollect thread_io");
-        exit(1);
-    }
-        
-    // if io terminated, check if it's eof
-    if(!input_flag){
-        //jump out of while loop
-        break;
-        
-    }
+        // if io terminated, check if it's eof
+        if(!input_flag){
+            //jump out of while loop
+            break;
+        }
         
     }
     
