@@ -555,52 +555,29 @@ int main(){
             int ret;
             //kill threads
             if(ret = pthread_kill(thread_a1, 0)) {
-                printf("main thread: kill() 2 returned error: %s\n", strerror(ret));
-                fflush(stdout);
+                // already terminated
             }
             else {
+                //cancel thread if it's alive
                 ret = pthread_cancel(thread_a1);
-                if(!ret) {
-                    printf("main thread: child thread cancelled successfully.\n");
-                    fflush(stdout);
-                }
-                else {
-                    printf("main thread: cancel returned error: %s\n", strerror(ret));
-                    fflush(stdout);
-                }
             }
             
             if(ret = pthread_kill(thread_a2, 0)) {
-                printf("main thread: kill() 2 returned error: %s\n", strerror(ret));
-                fflush(stdout);
+                // already terminated
             }
             else {
+                //cancel thread if it's alive
                 ret = pthread_cancel(thread_a2);
-                if(!ret) {
-                    printf("main thread: child thread cancelled successfully.\n");
-                    fflush(stdout);
-                }
-                else {
-                    printf("main thread: cancel returned error: %s\n", strerror(ret));
-                    fflush(stdout);
-                }
             }
             
             if(ret = pthread_kill(thread_a3, 0)) {
-                printf("main thread: kill() 2 returned error: %s\n", strerror(ret));
-                fflush(stdout);
+                // already terminated
             }
             else {
+                //cancel thread if it's alive
                 ret = pthread_cancel(thread_a3);
-                if(!ret) {
-                    printf("main thread: child thread cancelled successfully.\n");
-                    fflush(stdout);
-                }
-                else {
-                    printf("main thread: cancel returned error: %s\n", strerror(ret));
-                    fflush(stdout);
-                }
             }
+            
             //jump out of while loop
             break;
         }
