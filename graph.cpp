@@ -61,7 +61,7 @@ void Graph::printGraph()
 
 void Graph::reset()
 {
-    memset(this->adjTable,0,MaxVertex*4);
+    memset(this->adjTable,0,MaxVertex*MaxVertex*4);
 }
 
 
