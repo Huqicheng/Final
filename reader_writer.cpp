@@ -407,7 +407,7 @@ void* io(void* args){
     
     //start your input here
     //V
-    if(!cin.eof()){
+    if(cin.peek() != EOF){
         string str;
         
         std::getline(std::cin, str);
@@ -441,7 +441,7 @@ void* io(void* args){
     }
     
     //E
-    if(!cin.eof()){
+    if(cin.peek() != EOF){
         string str;
         
         std::getline(std::cin, str);
