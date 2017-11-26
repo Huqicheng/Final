@@ -110,9 +110,9 @@ int input_flag = 1;
 
 /* global data structure*/
 Graph g;
-vector<int> resultVC4a1;
-vector<int> resultVC4a2;
-vector<int> resultVC4a3;
+vector<int> resultVC4Approx1;
+vector<int> resultVC4Approx2;
+vector<int> resultVC4CNF;
 
 vector<vector<int>> edgeCache;
 
@@ -247,7 +247,7 @@ Minisat::lbool solve(Graph& g , int k, vector<vector<int> >& res){
 /* to simulate 3 algorithms :(*/
 
 //approx 2
-void* a1(void* args){
+void* APPROX_VC_2(void* args){
     
     mulock(LOCK,&mut_input);
     if(edgeCache.size() == 0){
@@ -278,7 +278,7 @@ void* a1(void* args){
     
         set<int>::iterator iteSet;
         for(iteSet = setVertices.begin();iteSet!=setVertices.end();iteSet++){
-            resultVC4a1.push_back(*iteSet);
+            resultVC4Approx2.push_back(*iteSet);
         }
         
     }
@@ -305,7 +305,7 @@ void* a1(void* args){
 }
 
 //approx 1
-void* a2(void* args){
+void* APPROX_VC_1(void* args){
     mulock(LOCK,&mut_input);
     if(edgeCache.size() == 0){
         // do nothing
@@ -331,7 +331,7 @@ void* a2(void* args){
         }
         set<int>::iterator iteInt;
         for(iteInt = setVertices.begin();iteInt!=setVertices.end();iteInt++){
-            resultVC4a2.push_back(*iteInt);
+            resultVC4Approx1.push_back(*iteInt);
         }
 
     }
@@ -360,7 +360,7 @@ void* a2(void* args){
 }
 
 //sat
-void* a3(void* args){
+void* CNF_SAT_VC(void* args){
     
     mulock(LOCK,&mut_input);
     
@@ -374,7 +374,7 @@ void* a3(void* args){
                 for(unsigned int ii = 0;ii<res.size();++ii){
                     for(unsigned int jj=0;jj<res[ii].size();++jj){
                         if(res[ii][jj] == 0){
-                            resultVC4a3.push_back(ii);
+                            resultVC4CNF.push_back(ii);
                         }
                     }
                 }
@@ -489,9 +489,9 @@ void* io(void* args){
     
     // start your output here
     g.printGraph();
-    printResult("CNF-SAT-VC",resultVC4a3);
-    printResult("APPROX-VC-1",resultVC4a2);
-    printResult("APPROX-VC-2",resultVC4a1);
+    printResult("CNF-SAT-VC",resultVC4CNF);
+    printResult("APPROX-VC-1",resultVC4Approx1);
+    printResult("APPROX-VC-2",resultVC4Approx2);
     
     
     mulock(LOCK,&mut_cnt);
@@ -524,17 +524,17 @@ int main(){
     
     
         // 3 algorithms run concurrently
-        if (pthread_create(&thread_a1, NULL, &a1, (void *)NULL) == -1) {
+        if (pthread_create(&thread_a1, NULL, &APPROX_VC_1, (void *)NULL) == -1) {
             puts("fail to create pthread thread_a1");
             exit(1);
         }
     
-        if (pthread_create(&thread_a2, NULL, &a2, (void *)NULL) == -1) {
+        if (pthread_create(&thread_a2, NULL, &APPROX_VC_2, (void *)NULL) == -1) {
             puts("fail to create pthread thread_a2");
             exit(1);
         }
     
-        if (pthread_create(&thread_a3, NULL, &a3, (void *)NULL) == -1){
+        if (pthread_create(&thread_a3, NULL, &CNF_SAT_VC, (void *)NULL) == -1){
             puts("fail to create pthread thread_a3");
             exit(1);
         }
