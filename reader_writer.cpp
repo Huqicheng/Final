@@ -12,6 +12,9 @@
 #include <errno.h>
 #include <limits.h>
 #include <signal.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <unistd.h>
 #include "command.hpp"
 #include "graph.hpp"
 
