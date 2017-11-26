@@ -520,7 +520,7 @@ int main(){
         mulock(LOCK,&mut_output);
     
         pthread_t thread_a1,thread_a2,thread_a3,thread_io;
-        void* res_a1,*res_a2,*res_a3;
+        void *res_io;
     
     
         // 3 algorithms run concurrently
@@ -545,7 +545,7 @@ int main(){
         }
     
         // wait for io to terminate
-        if (pthread_join(thread_io,&res_a3) == -1){
+        if (pthread_join(thread_io,&res_io) == -1){
             puts("fail to recollect thread_io");
             exit(1);
         }
