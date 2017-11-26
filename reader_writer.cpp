@@ -552,10 +552,55 @@ int main(){
         
         // if io terminated, check if it's eof
         if(!input_flag){
+            int ret;
             //kill threads
-            pthread_kill(thread_a1, 0);
-            pthread_kill(thread_a2, 0);
-            pthread_kill(thread_a3, 0);
+            if(ret = pthread_kill(thread_a1, 0)) {
+                printf("main thread: kill() 2 returned error: %s\n", strerror(ret));
+                fflush(stdout);
+            }
+            else {
+                ret = pthread_cancel(thread_a1);
+                if(!ret) {
+                    printf("main thread: child thread cancelled successfully.\n");
+                    fflush(stdout);
+                }
+                else {
+                    printf("main thread: cancel returned error: %s\n", strerror(ret));
+                    fflush(stdout);
+                }
+            }
+            
+            if(ret = pthread_kill(thread_a2, 0)) {
+                printf("main thread: kill() 2 returned error: %s\n", strerror(ret));
+                fflush(stdout);
+            }
+            else {
+                ret = pthread_cancel(thread_a2);
+                if(!ret) {
+                    printf("main thread: child thread cancelled successfully.\n");
+                    fflush(stdout);
+                }
+                else {
+                    printf("main thread: cancel returned error: %s\n", strerror(ret));
+                    fflush(stdout);
+                }
+            }
+            
+            if(ret = pthread_kill(thread_a3, 0)) {
+                printf("main thread: kill() 2 returned error: %s\n", strerror(ret));
+                fflush(stdout);
+            }
+            else {
+                ret = pthread_cancel(thread_a3);
+                if(!ret) {
+                    printf("main thread: child thread cancelled successfully.\n");
+                    fflush(stdout);
+                }
+                else {
+                    printf("main thread: cancel returned error: %s\n", strerror(ret));
+                    fflush(stdout);
+                }
+            }
             //jump out of while loop
             break;
         }
