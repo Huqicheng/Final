@@ -9,6 +9,9 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <vector>
+#include <errno.h>
+#include <limits.h>
+#include <signal.h>
 #include "command.hpp"
 #include "graph.hpp"
 
