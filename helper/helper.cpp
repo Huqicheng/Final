@@ -10,7 +10,7 @@ void pclock(char *msg, clockid_t cid) {
     if (clock_gettime(cid, &ts) == -1) {
 	perror("clock_gettime"); exit(0);
     }
-    printf("%4ld.%03ld\n", ts.tv_sec, ts.tv_nsec / 1000000);
+    printf("%4ld.%06ld\n", ts.tv_sec, ts.tv_nsec / 1000000);
 }
 
 void errp(char *s, int code) {
