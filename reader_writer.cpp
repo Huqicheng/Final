@@ -294,7 +294,7 @@ void* APPROX_VC_2(void* args){
                     ite--;
                 }
             }
-            //edges.erase(edgeIterator);
+            edges.erase(edgeIterator);
         }
     
         set<int>::iterator iteSet;
