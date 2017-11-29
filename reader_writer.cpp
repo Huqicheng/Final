@@ -290,6 +290,7 @@ void* APPROX_VC_2(void* args){
         
         
         unsigned idx = Random(0,edges.size()-1);
+        cout << idx << endl;
         vector<int> first = edges[idx];
         setVertices.insert(first[0]);
         setVertices.insert(first[1]);
