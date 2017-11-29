@@ -267,7 +267,7 @@ void* APPROX_VC_2(void* args){
         set<int> setVertices;
         
         
-        unsigned idx = rnd.getUnsignedInt(edges.size()-1);
+        unsigned idx = rnd.readUnsignedIntUpperBound(edges.size()-1);
         vector<int> first = edges[idx];
         setVertices.insert(first[0]);
         setVertices.insert(first[1]);
