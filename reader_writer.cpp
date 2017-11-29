@@ -16,6 +16,7 @@
 #include <sys/time.h>
 #include "command.hpp"
 #include "graph.hpp"
+#include "random.hpp"
 
 using namespace std;
 using namespace stringutils;
@@ -111,6 +112,7 @@ int cnt = 0;
 int input_flag = 1;
 
 /* global data structure*/
+Random random;
 Graph g;
 vector<int> resultVC4Approx1;
 vector<int> resultVC4Approx2;
@@ -263,6 +265,19 @@ void* APPROX_VC_2(void* args){
         vector<vector<int>> edges;
         edges = edgeCache;
         set<int> setVertices;
+        
+        unsigned idx = random.getUnsignedInt(edges.size()-1);
+        vector<int> first = edges[idx];
+        setVertices.insert(first[0]);
+        setVertices.insert(first[1]);
+        vector<vector<int>>::iterator ite = edgeIterator+1;
+        for(;ite!=edges.end();ite++){
+            vector<int> vect = *ite;
+            if(vect[0] == first[0] || vect[0] == first[1] || vect[1] == first[0] || vect[1] == first[1]){
+                edges.erase(ite);
+                ite--;
+            }
+        }
     
         vector<vector<int>>::iterator edgeIterator = edges.begin();
     
@@ -278,7 +293,7 @@ void* APPROX_VC_2(void* args){
                     ite--;
                 }
             }
-            edges.erase(edgeIterator);
+            //edges.erase(edgeIterator);
         }
     
         set<int>::iterator iteSet;
@@ -501,9 +516,9 @@ void* io(void* args){
 //    cout << "APPROX-VC-2 time:" << ptime1 << "us" <<endl;
 //    cout << "CNF-SAT-VC time:" << ptime3 << "us" <<endl;
 //    
-//    printResult("CNF-SAT-VC",resultVC4CNF);
-//    printResult("APPROX-VC-1",resultVC4Approx1);
-//    printResult("APPROX-VC-2",resultVC4Approx2);
+    printResult("CNF-SAT-VC",resultVC4CNF);
+    printResult("APPROX-VC-1",resultVC4Approx1);
+    printResult("APPROX-VC-2",resultVC4Approx2);
     
     
     cout << "{\"approx1\":"<< ptime2 <<",";
