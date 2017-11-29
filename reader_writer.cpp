@@ -511,7 +511,7 @@ void* io(void* args){
     cout << "\"cnf\":" << ptime3 << ",";
     cout << "\"cnf_size\":" << resultVC4CNF.size()<<",";
     cout << "\"approx1_size\":" << resultVC4Approx1.size()<<",";
-    cout << "\"approx2_size\":" << resultVC4Approx2.size()<<endl;
+    cout << "\"approx2_size\":" << resultVC4Approx2.size()<<"}"<<endl;
     
     
     
