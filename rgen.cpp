@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(int argc, char **argv){
-    //stdout = freopen("input.txt", "w", stdout);
+    stdout = freopen("input.txt", "w", stdout);
     if(argc>=1){
         argv[0] = (char*)"./graphGen";
     }
@@ -21,7 +21,7 @@ int main(int argc, char **argv){
             
        
 
-        sleep(2);
+        
         cnt ++;
         
         
