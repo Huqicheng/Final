@@ -36,9 +36,7 @@ int main(int argc, char **argv){
             return 0;
         }
         
-        int rgen_read = fork();
-        if(rgen_read == 0)
-        {
+       
             //bind file stream read_from_a1 to read-end of pipe_a1
             FILE* py2stream = fdopen(pipe_rgen[0],"r");
             char* line = NULL;
@@ -56,11 +54,7 @@ int main(int argc, char **argv){
             
             return 0;
             
-            
-        }else if(rgen_read < 0){
-            std::cerr << "Error: Failed to fork reader of a1" << endl;
-            return 1;
-        }
+       
 
         sleep(2);
         cnt ++;
