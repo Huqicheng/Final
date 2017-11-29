@@ -37,11 +37,12 @@ int main(int argc, char **argv){
     }
         sleep(2);
         cnt ++;
+        close(pipe_rgen[0]);
+        close(pipe_rgen[1]);
         
     }
     
-    close(pipe_rgen[0]);
-    close(pipe_rgen[1]);
+    
     
     return 0;
 
