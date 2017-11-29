@@ -266,11 +266,12 @@ void* APPROX_VC_2(void* args){
         edges = edgeCache;
         set<int> setVertices;
         
+        
         unsigned idx = random.getUnsignedInt(edges.size()-1);
         vector<int> first = edges[idx];
         setVertices.insert(first[0]);
         setVertices.insert(first[1]);
-        vector<vector<int>>::iterator ite = edgeIterator+1;
+        vector<vector<int>>::iterator ite = edges.begin();
         for(;ite!=edges.end();ite++){
             vector<int> vect = *ite;
             if(vect[0] == first[0] || vect[0] == first[1] || vect[1] == first[0] || vect[1] == first[1]){
