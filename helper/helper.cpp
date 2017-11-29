@@ -20,7 +20,7 @@ double pclock_double(char *msg, clockid_t cid) {
         perror("clock_gettime"); exit(0);
     }
     //printf("%4ld.%06ld\n", ts.tv_sec, ts.tv_nsec / 1000);
-    return ts.tv_sec*1000+ts.tv_nsec / 1000;
+    return ts.tv_sec*1000000+ts.tv_nsec / 1000;
 }
 
 void errp(char *s, int code) {
