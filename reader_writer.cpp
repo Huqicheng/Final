@@ -113,7 +113,7 @@ int cnt = 0;
 int input_flag = 1;
 
 /* global data structure*/
-srand( (unsigned)time( NULL ) );
+
 Graph g;
 vector<int> resultVC4Approx1;
 vector<int> resultVC4Approx2;
