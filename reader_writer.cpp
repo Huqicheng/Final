@@ -535,7 +535,7 @@ void* io(void* args){
 
 
 int main(){
-    stdout = freopen("out.txt", "w", stdout);
+    //stdout = freopen("out.txt", "w", stdout);
     stdin = freopen("input.txt", "r", stdin);
     while(true){
     
