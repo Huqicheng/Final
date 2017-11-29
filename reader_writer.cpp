@@ -523,7 +523,10 @@ void* io(void* args){
     
 }
 
+
+
 int main(){
+    stdout = freopen("out.txt", "w", stdout);
     
     while(true){
     
