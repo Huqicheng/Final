@@ -19,6 +19,7 @@ include_directories(${CMAKE_SOURCE_DIR}/minisat)
 add_subdirectory(helper)
 
 add_executable(input reader_writer.cpp graph.cpp command.cpp)
+add_executable(output rgen.cpp)
 # link minisat library with the main executable
 target_link_libraries(input minisat-lib-static)
 target_link_libraries(input helper ${CMAKE_THREAD_LIBS_INIT})
