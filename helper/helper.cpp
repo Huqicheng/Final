@@ -15,7 +15,7 @@ void pclock(char *msg, clockid_t cid) {
 
 double pclock_double(char *msg, clockid_t cid) {
     struct timespec ts;
-    printf("%s", msg);
+    //printf("%s", msg);
     if (clock_gettime(cid, &ts) == -1) {
         perror("clock_gettime"); exit(0);
     }
