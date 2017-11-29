@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(int argc, char **argv){
-    stdout = freopen("input.txt", "w", stdout);
+    //stdout = freopen("input.txt", "w", stdout);
     if(argc>=1){
         argv[0] = (char*)"./graphGen";
     }
@@ -37,22 +37,6 @@ int main(int argc, char **argv){
         }
         
        
-            //bind file stream read_from_a1 to read-end of pipe_a1
-            FILE* py2stream = fdopen(pipe_rgen[0],"r");
-            char* line = NULL;
-            size_t bytes = 0;
-            while(getline(&line, &bytes, py2stream) != -1)
-            {
-                cout << line;
-                
-                
-            }
-            
-            //close file stream
-            fclose(py2stream);
-            
-            
-            return 0;
             
        
 
