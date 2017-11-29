@@ -506,9 +506,13 @@ void* io(void* args){
 //    printResult("APPROX-VC-2",resultVC4Approx2);
     
     
-    cout << "{\"a1\":"<< ptime2 <<",";
-    cout << "\"a2\":" <<ptime1 << ",";
-    cout << "\"a3\":" << ptime3 << "}" <<endl;
+    cout << "{\"approx1\":"<< ptime2 <<",";
+    cout << "\"approx2\":" <<ptime1 << ",";
+    cout << "\"cnf\":" << ptime3 << ",";
+    cout << "\"cnf_size\":" << resultVC4CNF.size()<<",";
+    cout << "\"approx1_size\":" << resultVC4Approx1.size()<<",";
+    cout << "\"approx2_size\":" << resultVC4Approx2.size()<<endl;
+    
     
     
     mulock(LOCK,&mut_cnt);
