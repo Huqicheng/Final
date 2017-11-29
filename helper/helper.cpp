@@ -13,6 +13,16 @@ void pclock(char *msg, clockid_t cid) {
     printf("%4ld.%06ld\n", ts.tv_sec, ts.tv_nsec / 1000);
 }
 
+double pclock_double(char *msg, clockid_t cid) {
+    struct timespec ts;
+    printf("%s", msg);
+    if (clock_gettime(cid, &ts) == -1) {
+        perror("clock_gettime"); exit(0);
+    }
+    //printf("%4ld.%06ld\n", ts.tv_sec, ts.tv_nsec / 1000);
+    return ts.tv_sec+ts.tv_nsec / 1000;
+}
+
 void errp(char *s, int code) {
     fprintf(stderr, "Error: %s -- %s\n", s, strerror(code));
 }

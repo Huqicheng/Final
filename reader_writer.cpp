@@ -115,6 +115,9 @@ Graph g;
 vector<int> resultVC4Approx1;
 vector<int> resultVC4Approx2;
 vector<int> resultVC4CNF;
+double ptime1;
+double ptime2;
+double ptime3;
 
 vector<vector<int>> edgeCache;
 
@@ -293,7 +296,7 @@ void* APPROX_VC_2(void* args){
         errp("a1 - pthread_getcpuclockid", retcode);
     }
     else {
-        pclock("a1 - Thread cpu time: ", cid);
+        ptime1 = pclock_double("a1 - Thread cpu time: ", cid);
     }
     
     
@@ -346,7 +349,7 @@ void* APPROX_VC_1(void* args){
         errp("a2 - pthread_getcpuclockid", retcode);
     }
     else {
-        pclock("a2 - Thread cpu time: ", cid);
+        ptime2 = pclock_double("a2 - Thread cpu time: ", cid);
     }
     
 
@@ -393,7 +396,7 @@ void* CNF_SAT_VC(void* args){
         errp("a3 - pthread_getcpuclockid", retcode);
     }
     else {
-        pclock("a3 - Thread cpu time: ", cid);
+        ptime3 = pclock_double("a2 - Thread cpu time: ", cid);
     }
     
     mulock(LOCK,&mut_cnt);
@@ -493,6 +496,11 @@ void* io(void* args){
     
     // start your output here
     g.printGraph();
+    //time
+    cout << "APPROX-VC-1 time:" << ptim2 << "us" <<endl;
+    cout << "APPROX-VC-2 time:" << ptim1 << "us" <<endl;
+    cout << "CNF-SAT-VC time:" << ptim3 << "us" <<endl;
+    
     printResult("CNF-SAT-VC",resultVC4CNF);
     printResult("APPROX-VC-1",resultVC4Approx1);
     printResult("APPROX-VC-2",resultVC4Approx2);
