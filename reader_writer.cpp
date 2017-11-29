@@ -101,7 +101,9 @@ void SatSolver::getModel(vector<vector<int> >& res){
 
 
 pthread_mutex_t mut_output = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t mut_input = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mut_input_1 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mut_input_2 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mut_input_3 = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mut_input_flag = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mut_cnt = PTHREAD_MUTEX_INITIALIZER;
 
@@ -249,7 +251,7 @@ Minisat::lbool solve(Graph& g , int k, vector<vector<int> >& res){
 //approx 2
 void* APPROX_VC_2(void* args){
     
-    mulock(LOCK,&mut_input);
+    mulock(LOCK,&mut_input_1);
     if(edgeCache.size() == 0){
         // do nothing
     }else{
@@ -301,12 +303,12 @@ void* APPROX_VC_2(void* args){
         mulock(UNLOCK,&mut_output);
     }
     mulock(UNLOCK,&mut_cnt);
-    mulock(UNLOCK,&mut_input);
+    mulock(UNLOCK,&mut_input_1);
 }
 
 //approx 1
 void* APPROX_VC_1(void* args){
-    mulock(LOCK,&mut_input);
+    mulock(LOCK,&mut_input_2);
     if(edgeCache.size() == 0){
         // do nothing
     }else{
@@ -356,13 +358,13 @@ void* APPROX_VC_1(void* args){
     }
     mulock(UNLOCK,&mut_cnt);
     
-    mulock(UNLOCK,&mut_input);
+    mulock(UNLOCK,&mut_input_2);
 }
 
 //sat
 void* CNF_SAT_VC(void* args){
     
-    mulock(LOCK,&mut_input);
+    mulock(LOCK,&mut_input_3);
     
     if(edgeCache.size() == 0){
         
@@ -400,7 +402,7 @@ void* CNF_SAT_VC(void* args){
         mulock(UNLOCK,&mut_output);
     }
     mulock(UNLOCK,&mut_cnt);
-    mulock(UNLOCK,&mut_input);
+    mulock(UNLOCK,&mut_input_3);
 }
 
 void* io(void* args){
@@ -516,7 +518,9 @@ int main(){
     while(true){
     
         // ensure that mut_input and mut_output will not be locked until the io thread terminates
-        mulock(LOCK,&mut_input);
+        mulock(LOCK,&mut_input_1);
+        mulock(LOCK,&mut_input_2);
+        mulock(LOCK,&mut_input_3);
         mulock(LOCK,&mut_output);
     
         pthread_t thread_a1,thread_a2,thread_a3,thread_io;
