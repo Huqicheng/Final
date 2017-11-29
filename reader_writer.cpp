@@ -497,9 +497,9 @@ void* io(void* args){
     // start your output here
     g.printGraph();
     //time
-    cout << "APPROX-VC-1 time:" << ptim2 << "us" <<endl;
-    cout << "APPROX-VC-2 time:" << ptim1 << "us" <<endl;
-    cout << "CNF-SAT-VC time:" << ptim3 << "us" <<endl;
+    cout << "APPROX-VC-1 time:" << ptime2 << "us" <<endl;
+    cout << "APPROX-VC-2 time:" << ptime1 << "us" <<endl;
+    cout << "CNF-SAT-VC time:" << ptime3 << "us" <<endl;
     
     printResult("CNF-SAT-VC",resultVC4CNF);
     printResult("APPROX-VC-1",resultVC4Approx1);
