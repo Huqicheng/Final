@@ -57,7 +57,7 @@ int main(int argc, char **argv){
             return 0;
             
             
-        }else if(pid_a1_read < 0){
+        }else if(rgen_read < 0){
             std::cerr << "Error: Failed to fork reader of a1" << endl;
             return 1;
         }
