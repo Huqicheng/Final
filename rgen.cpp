@@ -15,26 +15,7 @@ int main(int argc, char **argv){
     while(cnt<10){
         
     
-        int pid_rgen, pipe_rgen[2];
-        pipe(pipe_rgen);
-        pid_rgen = fork();
-        if(pid_rgen < 0){
-            std::cerr << "Error: Failed to fork rgen" << endl;
-            exit(1);
-        
-        }else if(pid_rgen == 0){
-            //bind stdout to the write-end of pipe
-            dup2(pipe_rgen[1], STDOUT_FILENO);
-        
-            //close pipes in this process
-            close(pipe_rgen[0]);
-            close(pipe_rgen[1]);
-        
-            execvp("./graphGen",argv);
-        
-            // exit with success
-            return 0;
-        }
+        execvp("./graphGen",argv);
         
        
             
@@ -42,8 +23,7 @@ int main(int argc, char **argv){
 
         sleep(2);
         cnt ++;
-        close(pipe_rgen[0]);
-        close(pipe_rgen[1]);
+        
         
     }
     
