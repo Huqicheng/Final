@@ -450,6 +450,7 @@ void* CNF_SAT_VC(void* args){
 void* io(void* args){
     
     //start your input here
+     srand((unsigned)time(0)); 
     //V
     if(cin.peek() != EOF){
         string str;
