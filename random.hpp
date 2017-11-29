@@ -11,7 +11,7 @@ private:
     ifstream urandom;
     
 public:
-    Random(){
+    RandomGen(){
         urandom.open("/dev/urandom");
     }
     
@@ -52,7 +52,7 @@ public:
         
     }
     
-    ~Random(){
+    ~RandomGen(){
         urandom.close();
     }
     
