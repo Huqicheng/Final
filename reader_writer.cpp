@@ -486,7 +486,9 @@ void* io(void* args){
         input_flag = 0;
         return NULL;
     }
-    mulock(UNLOCK,&mut_input);
+    mulock(UNLOCK,&mut_input_1);
+    mulock(UNLOCK,&mut_input_2);
+    mulock(UNLOCK,&mut_input_3);
     mulock(LOCK,&mut_output);
     
     // start your output here
