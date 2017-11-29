@@ -450,7 +450,7 @@ void* CNF_SAT_VC(void* args){
 void* io(void* args){
     
     //start your input here
-     srand((unsigned)time(0)); 
+     srand((unsigned)time(0));
     //V
     if(cin.peek() != EOF){
         string str;
@@ -541,9 +541,9 @@ void* io(void* args){
 //    cout << "APPROX-VC-2 time:" << ptime1 << "us" <<endl;
 //    cout << "CNF-SAT-VC time:" << ptime3 << "us" <<endl;
 //    
-    printResult("CNF-SAT-VC",resultVC4CNF);
-    printResult("APPROX-VC-1",resultVC4Approx1);
-    printResult("APPROX-VC-2",resultVC4Approx2);
+//    printResult("CNF-SAT-VC",resultVC4CNF);
+//    printResult("APPROX-VC-1",resultVC4Approx1);
+//    printResult("APPROX-VC-2",resultVC4Approx2);
     
     
     cout << "{\"approx1\":"<< ptime2 <<",";
