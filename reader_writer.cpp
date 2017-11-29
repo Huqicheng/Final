@@ -495,15 +495,20 @@ void* io(void* args){
     mulock(LOCK,&mut_output);
     
     // start your output here
-    g.printGraph();
+   // g.printGraph();
     //time
-    cout << "APPROX-VC-1 time:" << ptime2 << "us" <<endl;
-    cout << "APPROX-VC-2 time:" << ptime1 << "us" <<endl;
-    cout << "CNF-SAT-VC time:" << ptime3 << "us" <<endl;
+//    cout << "APPROX-VC-1 time:" << ptime2 << "us" <<endl;
+//    cout << "APPROX-VC-2 time:" << ptime1 << "us" <<endl;
+//    cout << "CNF-SAT-VC time:" << ptime3 << "us" <<endl;
+//    
+//    printResult("CNF-SAT-VC",resultVC4CNF);
+//    printResult("APPROX-VC-1",resultVC4Approx1);
+//    printResult("APPROX-VC-2",resultVC4Approx2);
     
-    printResult("CNF-SAT-VC",resultVC4CNF);
-    printResult("APPROX-VC-1",resultVC4Approx1);
-    printResult("APPROX-VC-2",resultVC4Approx2);
+    
+    cout << "{\"a1\":"<< ptime2 <<",";
+    cout << "\"a2\":" <<ptime1 << ",";
+    cout << "\"a3\":" << ptime3 << "}" <<endl;
     
     
     mulock(LOCK,&mut_cnt);
