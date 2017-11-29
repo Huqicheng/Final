@@ -16,10 +16,11 @@
 #include <sys/time.h>
 #include "command.hpp"
 #include "graph.hpp"
-#include "random.hpp"
+#include "time.h"
 
 using namespace std;
 using namespace stringutils;
+
 
 // encapsulate Minisat::Solver in SatSolver to adapt the graph structure
 class SatSolver{
@@ -112,7 +113,7 @@ int cnt = 0;
 int input_flag = 1;
 
 /* global data structure*/
-RandomGen rnd;
+srand( (unsigned)time( NULL ) );
 Graph g;
 vector<int> resultVC4Approx1;
 vector<int> resultVC4Approx2;
@@ -120,8 +121,8 @@ vector<int> resultVC4CNF;
 double ptime1;
 double ptime2;
 double ptime3;
-
 vector<vector<int>> edgeCache;
+
 
 void reset(){
     g.reset();
@@ -131,6 +132,27 @@ void reset(){
     edgeCache.clear();
 }
 
+
+int Random(int m, int n)
+{
+    int pos, dis;
+    if (m == n)
+    {
+        return m;
+    }
+    else if (m > n)
+    {
+        pos = n;
+        dis = m - n + 1;
+        return rand() % dis + pos;
+    }
+    else
+    {
+        pos = m;
+        dis = n - m + 1;
+        return rand() % dis + pos;
+    }
+}
 
 
 void printResult(string name,vector<int>& result){
@@ -267,7 +289,7 @@ void* APPROX_VC_2(void* args){
         set<int> setVertices;
         
         
-        unsigned idx = rnd.readUnsignedIntUpperBound(edges.size()-1);
+        unsigned idx = Random(0,edges.size()-1);
         vector<int> first = edges[idx];
         setVertices.insert(first[0]);
         setVertices.insert(first[1]);
