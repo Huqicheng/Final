@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-class Random{
+class RandomGen{
 private:
     // open /dev/urandom to read
     ifstream urandom;
